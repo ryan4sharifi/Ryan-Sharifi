@@ -6,6 +6,13 @@ import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +27,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className} suppressHydrationWarning>
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />

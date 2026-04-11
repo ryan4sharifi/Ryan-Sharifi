@@ -39,17 +39,40 @@ const getDesignTokens = (mode: "light" | "dark") => ({
   },
 
   typography: {
-    fontFamily: "Inter, sans-serif",
+    fontFamily:
+      "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+
     h1: {
       fontSize: "3rem",
       fontWeight: 700,
+      letterSpacing: "-0.02em",
+      lineHeight: 1.2,
     },
     h2: {
       fontSize: "2.25rem",
       fontWeight: 600,
+      letterSpacing: "-0.01em",
+      lineHeight: 1.3,
     },
+    h3: {
+      fontSize: "1.75rem",
+      fontWeight: 600,
+      lineHeight: 1.35,
+    },
+
     body1: {
       fontSize: "1rem",
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontSize: "0.9rem",
+      lineHeight: 1.6,
+    },
+
+    button: {
+      textTransform: "none",
+      fontWeight: 500,
+      letterSpacing: "0.02em",
     },
   },
 

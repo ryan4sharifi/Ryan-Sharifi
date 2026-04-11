@@ -24,22 +24,43 @@ export default function Projects() {
       component="section"
       id="projects"
       sx={{
-        py: 10,
-        px: 2,
+        py: { xs: 5, md: 10 },
+        px: { xs: 2, md: 3 },
       }}
     >
-      <Stack spacing={12} sx={{ maxWidth: "1000px", mx: "auto" }}>
+      <Stack spacing={{ xs: 6, md: 10 }} sx={{ maxWidth: "1100px", mx: "auto" }}>
         {/* Section Title */}
-        <Typography variant="h2" sx={{ textAlign: "center" }}>
-          Projects
-        </Typography>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Projects
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 1,
+              color: "text.secondary",
+              maxWidth: "500px",
+              mx: "auto",
+            }}
+          >
+            A selection of my recent work, from full-stack platforms to smaller tools.
+          </Typography>
+        </Box>
 
         {/* Featured Projects */}
-        <Stack spacing={3}>
-          <Typography variant="h5">Featured Work</Typography>
+        <Stack spacing={2.5}>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            Featured Work
+          </Typography>
           <Stack
             direction={{ xs: "column", md: "row" }}
-            sx={{ flexWrap: "wrap", alignItems: "stretch", gap: "24px" }}
+            sx={{ flexWrap: "wrap", alignItems: "stretch", gap: { xs: "16px", md: "24px" } }}
           >
             {featuredProjects.map((project, index) => (
               <Box
@@ -50,7 +71,7 @@ export default function Projects() {
                     xs: "1 1 100%",
                     md: "1 1 calc(50% - 24px)",
                   },
-                  minHeight: "280px",
+                  minHeight: "260px",
                 }}
               >
                 <Box sx={{ flex: 1 }}>
@@ -62,8 +83,10 @@ export default function Projects() {
         </Stack>
 
         {/* Other Projects */}
-        <Stack spacing={3}>
-          <Typography variant="h5">Other Projects</Typography>
+        <Stack spacing={2.5}>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            Other Projects
+          </Typography>
           <Box
             sx={{
               display: "grid",
@@ -72,11 +95,11 @@ export default function Projects() {
                 sm: "repeat(2, 1fr)",
                 md: "repeat(3, 1fr)",
               },
-              gap: "24px",
+              gap: { xs: "16px", md: "24px" },
             }}
           >
             {otherProjects.map((project, index) => (
-              <Box key={index} sx={{ minHeight: "240px", display: "flex" }}>
+              <Box key={index} sx={{ minHeight: "220px", display: "flex" }}>
                 <Box sx={{ flex: 1 }}>
                   <ProjectCard {...project} />
                 </Box>

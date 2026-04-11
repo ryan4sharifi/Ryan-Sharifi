@@ -10,7 +10,7 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
 
   return (
-    <Box component="section" id="contact" sx={{ py: 12, px: 2 }}>
+    <Box component="section" id="contact" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 3 } }}>
       <Stack
         spacing={6}
         sx={{ maxWidth: "700px", mx: "auto", textAlign: "center" }}
@@ -27,93 +27,164 @@ export default function Contact() {
           viewport={{ once: true }}
         >
           <Box
-            component="form"
-            onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              setLoading(true);
-
-              const form = e.currentTarget;
-              const formData = new FormData(form);
-
-              try {
-                const res = await fetch("https://formspree.io/f/xovdpppr", {
-                  method: "POST",
-                  body: formData,
-                  headers: {
-                    Accept: "application/json",
-                  },
-                });
-
-                if (res.ok) {
-                  setSuccess(true);
-                  form.reset();
-                }
-              } catch (err) {
-                console.error(err);
-              } finally {
-                setLoading(false);
-              }
+            sx={{
+              borderRadius: "20px",
+              p: { xs: 2.5, md: 4 },
+              background: "linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))",
+              border: "1px solid rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
             }}
-            sx={{ display: "flex", flexDirection: "column", gap: 3 }}
           >
-            <TextField label="Name" name="name" required fullWidth />
+            <Box
+              component="form"
+              onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                setLoading(true);
 
-            <TextField label="Email" name="email" type="email" required fullWidth />
+                const form = e.currentTarget;
+                const formData = new FormData(form);
 
-            <TextField
-              label="Message"
-              name="message"
-              multiline
-              rows={4}
-              required
-              fullWidth
-            />
+                try {
+                  const res = await fetch("https://formspree.io/f/xovdpppr", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                      Accept: "application/json",
+                    },
+                  });
 
-            <input type="hidden" name="_subject" value="New Portfolio Message" />
-
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                mt: 2,
-                py: 1.5,
-                borderRadius: "999px",
-                background: "linear-gradient(90deg, #3B82F6, #6366F1)",
-                boxShadow: "0px 8px 30px rgba(59,130,246,0.4)",
-                ":hover": {
-                  transform: "translateY(-2px)",
-                  boxShadow: "0px 12px 40px rgba(59,130,246,0.6)",
-                },
+                  if (res.ok) {
+                    setSuccess(true);
+                    form.reset();
+                  }
+                } catch (err) {
+                  console.error(err);
+                } finally {
+                  setLoading(false);
+                }
               }}
-              type="submit"
-              disabled={loading}
+              sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
             >
-              {loading ? <CircularProgress size={24} sx={{ color: "#fff" }} /> : "Send Message"}
-            </Button>
+              <TextField
+                label="Name"
+                name="name"
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "12px",
+                    background: "rgba(255,255,255,0.02)",
+                    "& fieldset": {
+                      borderColor: "rgba(255,255,255,0.1)",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "rgba(255,255,255,0.2)",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3B82F6",
+                    },
+                  },
+                }}
+              />
 
-            {success && (
-              <Typography
+              <TextField
+                label="Email"
+                name="email"
+                type="email"
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "12px",
+                    background: "rgba(255,255,255,0.02)",
+                    "& fieldset": {
+                      borderColor: "rgba(255,255,255,0.1)",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "rgba(255,255,255,0.2)",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3B82F6",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                label="Message"
+                name="message"
+                multiline
+                rows={4}
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "12px",
+                    background: "rgba(255,255,255,0.02)",
+                    "& fieldset": {
+                      borderColor: "rgba(255,255,255,0.1)",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "rgba(255,255,255,0.2)",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3B82F6",
+                    },
+                  },
+                }}
+              />
+
+              <input type="hidden" name="_subject" value="New Portfolio Message" />
+
+              <Button
+                variant="contained"
+                size="large"
                 sx={{
                   mt: 2,
-                  color: "success.main",
-                  fontWeight: 500,
+                  py: 1.3,
+                  borderRadius: "999px",
+                  background: "#3B82F6",
+                  boxShadow: "none",
+                  transition: "all 0.25s ease",
+                  ":hover": {
+                    background: "#2563EB",
+                    transform: "translateY(-1px)",
+                  },
                 }}
+                type="submit"
+                disabled={loading}
               >
-                Message sent successfully! I’ll get back to you soon.
-              </Typography>
-            )}
+                {loading ? <CircularProgress size={24} sx={{ color: "#fff" }} /> : "Send Message"}
+              </Button>
 
-            <Typography variant="body2" color="text.secondary">
-              Or email me directly at{" "}
-              <span style={{ color: "#60A5FA" }}>
-                ryan4sharifi@gmail.com
-              </span>
-              <br />
-              Or call/text me at{" "}
-              <span style={{ color: "#60A5FA" }}>
-                (832) 710-1760
-              </span>
-            </Typography>
+              {success && (
+                <Typography
+                  sx={{
+                    mt: 2,
+                    color: "success.main",
+                    fontWeight: 500,
+                    fontSize: "0.95rem",
+                  }}
+                >
+                  Message sent successfully! I’ll get back to you soon.
+                </Typography>
+              )}
+
+              <Typography variant="body2" sx={{ color: "text.secondary", mt: 2 }}>
+                Or email me at{" "}
+                <span style={{ color: "#60A5FA" }}>
+                  ryan4sharifi@gmail.com
+                </span>
+                <br />
+                Or call/text at{" "}
+                <span style={{ color: "#60A5FA" }}>
+                  (832) 710-1760
+                </span>
+              </Typography>
+            </Box>
           </Box>
         </motion.div>
       </Stack>
