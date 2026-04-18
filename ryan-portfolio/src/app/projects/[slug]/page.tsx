@@ -1,6 +1,6 @@
-
+// FIX: remove useTheme (server component issue)
 import { projects } from "@/data/projects";
-import { Box, Typography, Chip, Button } from "@mui/material";
+import { Box, Typography, Chip } from "@mui/material";
 import Image from "next/image";
 
 export default async function ProjectPage({
@@ -18,22 +18,51 @@ export default async function ProjectPage({
   return (
     <Box
       sx={{
-        maxWidth: "1100px",
+        maxWidth: "900px",
         mx: "auto",
         px: 2,
-        py: 10,
+        py: { xs: 10, md: 14 },
       }}
     >
+      {/* Eyebrow */}
+      <Typography
+        sx={{
+          fontSize: "0.75rem",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "text.secondary",
+          fontWeight: 500,
+          mb: 1,
+        }}
+      >
+        Project
+      </Typography>
+
       {/* Title */}
       <Typography
         variant="h3"
         sx={{
-          fontWeight: 700,
-          mb: 3,
+          fontWeight: 600,
+          mb: 1,
           lineHeight: 1.2,
+          letterSpacing: "-0.3px",
+          color: "text.primary",
         }}
       >
         {project.title}
+      </Typography>
+
+      {/* Subtitle */}
+      <Typography
+        sx={{
+          color: "text.secondary",
+          mb: 4,
+          maxWidth: "520px",
+          fontSize: "0.95rem",
+          lineHeight: 1.7,
+        }}
+      >
+        A closer look at this project, including stack, structure, and design.
       </Typography>
 
       {/* Image */}
@@ -41,11 +70,13 @@ export default async function ProjectPage({
         sx={{
           position: "relative",
           width: "100%",
-          height: { xs: "220px", md: "400px" },
-          borderRadius: "20px",
+          height: { xs: "220px", md: "380px" },
+          borderRadius: "16px",
           overflow: "hidden",
-          mb: 4,
-          border: "1px solid rgba(255,255,255,0.08)",
+          mb: 5,
+          border: "1px solid",
+          borderColor: "divider",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
         }}
       >
         <Image
@@ -60,10 +91,10 @@ export default async function ProjectPage({
       <Typography
         sx={{
           fontSize: "1rem",
-          lineHeight: 1.7,
+          lineHeight: 1.75,
           color: "text.secondary",
-          mb: 4,
-          maxWidth: "700px",
+          mb: 5,
+          maxWidth: "640px",
         }}
       >
         {project.description}
@@ -72,49 +103,57 @@ export default async function ProjectPage({
       {/* Tech Stack */}
       <Box
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-          mb: 5,
+          p: { xs: 2.5, md: 3 },
+          borderRadius: "16px",
+          backgroundColor: "background.paper",
+          border: "1px solid",
+          borderColor: "divider",
+          backdropFilter: "blur(10px)",
+          mb: 6,
         }}
       >
-        {project.tech.map((tech: string, index: number) => (
-          <Chip
-            key={index}
-            label={tech}
-            sx={{
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          />
-        ))}
-      </Box>
-
-      {/* Actions */}
-      <Box sx={{ display: "flex", gap: "16px" }}>
-        <Button
-          variant="contained"
-          href={project.demoUrl}
+        <Typography
           sx={{
-            borderRadius: "999px",
-            px: 4,
-            textTransform: "none",
+            mb: 2,
+            fontWeight: 500,
+            fontSize: "0.85rem",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: "text.secondary",
           }}
         >
-          Live Demo
-        </Button>
+          Tech Stack
+        </Typography>
 
-        <Button
-          variant="outlined"
-          href={project.repoUrl}
+        <Box
           sx={{
-            borderRadius: "999px",
-            px: 4,
-            textTransform: "none",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
           }}
         >
-          View Code
-        </Button>
+          {project.tech.map((tech: string, index: number) => (
+            <Chip
+              key={index}
+              label={tech}
+              sx={{
+                borderRadius: "999px",
+                px: 1.2,
+                backgroundColor: "background.paper",
+                border: "1px solid",
+                borderColor: "divider",
+                fontSize: "0.7rem",
+                fontWeight: 500,
+                color: "text.primary",
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  backgroundColor: "action.hover",
+                  transform: "translateY(-1px)",
+                },
+              }}
+            />
+          ))}
+        </Box>
       </Box>
     </Box>
   );

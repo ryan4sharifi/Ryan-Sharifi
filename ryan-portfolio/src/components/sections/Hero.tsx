@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, Button, Stack, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import FloatingTechIcons from "@/components/effects/FloatingTechIcons";
 import { useRouter, usePathname } from "next/navigation";
@@ -8,6 +8,8 @@ import { useRouter, usePathname } from "next/navigation";
 export default function Hero() {
   const router = useRouter();
   const pathname = usePathname();
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
 
   const handleNavigate = (id: string) => {
     router.push(`/#${id}`);
@@ -29,13 +31,15 @@ export default function Hero() {
       component="section"
       sx={{
         minHeight: "calc(100vh - 80px)",
-        mt: "-80px",
+        pt: "120px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         px: 2,
-        background: "radial-gradient(circle at 50% 20%, #1e293b, #0B0F19)",
+        background: isDark
+          ? "linear-gradient(180deg, #0B0F19 0%, #0F172A 100%)"
+          : "linear-gradient(180deg, #F7F9FC 0%, #EEF2F7 100%)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -49,40 +53,40 @@ export default function Hero() {
           transform: "translateX(-50%)",
           width: "600px",
           height: "600px",
-          background:
-            "radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%)",
-          filter: "blur(120px)",
+          background: isDark
+            ? "radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%)"
+            : "radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%)",
+          filter: "blur(160px)",
           zIndex: 0,
         }}
       />
       <Stack
-        spacing={4}
+        spacing={3}
         sx={{
           maxWidth: "900px",
           mx: "auto",
           position: "relative",
           zIndex: 1,
+          px: { xs: 2, md: 0 },
         }}
       >
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <Typography
             variant="h1"
             sx={{
-              background: "linear-gradient(90deg, #60A5FA, #A78BFA, #38BDF8)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontWeight: 700,
+              color: isDark ? "#E2E8F0" : theme.palette.text.primary,
+              fontWeight: 600,
               lineHeight: 1.1,
-              letterSpacing: "-0.5px",
+              letterSpacing: "-0.3px",
               fontSize: {
-                xs: "2.2rem",
-                sm: "3rem",
-                md: "4rem",
+                xs: "2rem",
+                sm: "2.6rem",
+                md: "3.2rem",
               },
             }}
           >
@@ -96,18 +100,20 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
           <Typography
             variant="body1"
             sx={{
-              color: "rgba(255,255,255,0.7)",
+              color: isDark
+                ? "rgba(226,232,240,0.7)"
+                : theme.palette.text.secondary,
               fontSize: {
                 xs: "0.95rem",
                 sm: "1.1rem",
               },
               lineHeight: 1.7,
-              maxWidth: "600px",
+              maxWidth: "520px",
               mx: "auto",
             }}
           >
@@ -120,11 +126,11 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Stack
             direction={{ xs: "column", sm: "row" }}
-            spacing={2}
+            spacing={1.5}
             sx={{ justifyContent: "center", alignItems: "center" }}
           >
             <Button
@@ -132,17 +138,18 @@ export default function Hero() {
               size="large"
               onClick={() => handleNavigate("projects")}
               sx={{
-                px: 5,
-                py: 1.6,
+                px: 4,
+                py: 1.3,
                 borderRadius: "999px",
-                background: "linear-gradient(90deg, #3B82F6, #6366F1)",
-                boxShadow: "0px 10px 40px rgba(59,130,246,0.5)",
-                fontWeight: 600,
-                letterSpacing: "0.3px",
-                transition: "all 0.3s ease",
+                backgroundColor: theme.palette.primary.main,
+                boxShadow: "0px 6px 20px rgba(59,130,246,0.25)",
+                fontWeight: 500,
+                textTransform: "none",
+                transition: "all 0.2s ease",
                 ":hover": {
-                  transform: "translateY(-3px) scale(1.02)",
-                  boxShadow: "0px 18px 60px rgba(59,130,246,0.7)",
+                  backgroundColor: theme.palette.primary.dark || "#2563EB",
+                  transform: "translateY(-1px)",
+                  boxShadow: "0px 10px 30px rgba(59,130,246,0.35)",
                 },
               }}
             >
@@ -153,18 +160,26 @@ export default function Hero() {
               size="large"
               onClick={() => handleNavigate("contact")}
               sx={{
-                px: 5,
-                py: 1.6,
+                px: 4,
+                py: 1.3,
                 borderRadius: "999px",
-                borderColor: "rgba(96,165,250,0.6)",
-                color: "#60A5FA",
+                borderColor: theme.palette.divider,
+                color: isDark ? "#CBD5F5" : theme.palette.text.primary,
                 fontWeight: 500,
-                backdropFilter: "blur(6px)",
-                transition: "all 0.3s ease",
+                textTransform: "none",
+                backgroundColor: isDark
+                  ? "rgba(255,255,255,0.02)"
+                  : theme.palette.background.paper,
+                backdropFilter: "blur(4px)",
+                transition: "all 0.2s ease",
                 ":hover": {
-                  backgroundColor: "rgba(59,130,246,0.1)",
-                  borderColor: "#60A5FA",
-                  transform: "translateY(-2px)",
+                  backgroundColor: isDark
+                    ? "rgba(255,255,255,0.05)"
+                    : "rgba(0,0,0,0.04)",
+                  borderColor: isDark
+                    ? "rgba(148,163,184,0.5)"
+                    : "rgba(15,23,42,0.2)",
+                  transform: "translateY(-1px)",
                 },
               }}
             >
@@ -180,8 +195,9 @@ export default function Hero() {
           left: 0,
           width: "100%",
           height: "120px",
-          background:
-            "linear-gradient(to bottom, transparent, #0B0F19)",
+          background: isDark
+            ? "linear-gradient(to bottom, transparent, rgba(11,15,25,0.9))"
+            : "linear-gradient(to bottom, transparent, #F7F9FC)",
           zIndex: 0,
         }}
       />

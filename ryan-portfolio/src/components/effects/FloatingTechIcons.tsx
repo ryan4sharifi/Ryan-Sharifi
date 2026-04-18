@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 
 const icons = [
@@ -13,6 +13,9 @@ const icons = [
 ];
 
 export default function FloatingTechIcons() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
   return (
     <Box
       sx={{
@@ -27,13 +30,13 @@ export default function FloatingTechIcons() {
           key={index}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{
-            opacity: [0.4, 0.9, 0.4],
-            y: [0, -15, 0],
-            x: [0, 10, 0],
+            opacity: [0.25, 0.5, 0.25],
+            y: [0, -10, 0],
+            x: [0, 6, 0],
           }}
           transition={{
-            duration: 6 + index,
-            delay: index * 0.4,
+            duration: 5 + index,
+            delay: index * 0.35,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -46,17 +49,23 @@ export default function FloatingTechIcons() {
         >
           <Box
             sx={{
-              px: 2.5,
-              py: 1.2,
+              px: 2,
+              py: 0.9,
               borderRadius: "999px",
-              fontSize: "0.75rem",
-              letterSpacing: "0.5px",
-              background:
-                "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(99,102,241,0.1))",
-              border: "1px solid rgba(255,255,255,0.15)",
-              backdropFilter: "blur(10px)",
-              color: "rgba(255,255,255,0.7)",
-              boxShadow: "0 8px 30px rgba(59,130,246,0.15)",
+              fontSize: "0.7rem",
+              letterSpacing: "0.04em",
+              background: isDark
+                ? "rgba(255,255,255,0.04)"
+                : theme.palette.background.paper,
+              border: `1px solid ${theme.palette.divider}`,
+              backdropFilter: "blur(6px)",
+              color: isDark
+                ? "rgba(226,232,240,0.7)"
+                : theme.palette.text.secondary,
+              boxShadow: isDark
+                ? "0 6px 20px rgba(0,0,0,0.3)"
+                : "0 4px 12px rgba(0,0,0,0.05)",
+              transition: "all 0.2s ease",
             }}
           >
             {icon.label}
@@ -73,9 +82,10 @@ export default function FloatingTechIcons() {
           width: "700px",
           height: "700px",
           transform: "translate(-50%, -50%)",
-          background:
-            "radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%)",
-          filter: "blur(80px)",
+          background: isDark
+            ? "radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%)"
+            : "radial-gradient(circle, rgba(59,130,246,0.06), transparent 70%)",
+          filter: "blur(120px)",
           zIndex: 0,
         }}
       />

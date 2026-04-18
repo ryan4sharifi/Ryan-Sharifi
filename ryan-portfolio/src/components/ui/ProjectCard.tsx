@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Chip, Stack } from "@mui/material";
+import { Box, Typography, Chip, Stack, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,33 +20,36 @@ export default function ProjectCard({
   image,
   slug,
 }: ProjectCardProps) {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
   return (
     <Link href={`/projects/${slug}`} style={{ textDecoration: "none" }}>
       <motion.div
-        whileHover={{ y: -10, scale: 1.01 }}
-        transition={{ type: "spring", stiffness: 200 }}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.25 }}
         style={{ height: "100%" }}
       >
         <Box
           sx={{
             position: "relative",
-            borderRadius: "24px",
-            background:
-              "linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))",
-            border: "1px solid rgba(255,255,255,0.08)",
-            backdropFilter: "blur(12px)",
+            borderRadius: "16px",
+            background: isDark
+              ? "rgba(255,255,255,0.02)"
+              : theme.palette.background.paper,
+            border: `1px solid ${theme.palette.divider}`,
+            backdropFilter: "blur(10px)",
             overflow: "hidden",
-            transition: "all 0.35s ease",
+            transition: "all 0.2s ease",
             cursor: "pointer",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             "&:hover": {
-              border: "1px solid rgba(99,102,241,0.5)",
-              boxShadow: "0 20px 60px rgba(59,130,246,0.25)",
-              "& img": {
-                transform: "scale(1.05)",
-              },
+              transform: "translateY(-2px)",
+              boxShadow: isDark
+                ? "0 10px 30px rgba(0,0,0,0.4)"
+                : "0 8px 20px rgba(0,0,0,0.08)",
             },
           }}
         >
@@ -56,7 +59,7 @@ export default function ProjectCard({
               height: "160px",
               position: "relative",
               overflow: "hidden",
-              borderBottom: "1px solid rgba(255,255,255,0.05)",
+              borderBottom: `1px solid ${theme.palette.divider}`,
               flexShrink: 0,
             }}
           >
@@ -75,8 +78,9 @@ export default function ProjectCard({
                 sx={{
                   width: "100%",
                   height: "100%",
-                  background:
-                    "radial-gradient(circle at 50% 20%, rgba(59,130,246,0.25), transparent 70%)",
+                  background: isDark
+                    ? "radial-gradient(circle at 50% 20%, rgba(59,130,246,0.2), transparent 70%)"
+                    : "linear-gradient(180deg, #F1F5F9, #E2E8F0)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -84,7 +88,7 @@ export default function ProjectCard({
               >
                 <Typography
                   variant="body2"
-                  sx={{ color: "rgba(255,255,255,0.4)", fontSize: "0.8rem" }}
+                  sx={{ color: isDark ? "rgba(255,255,255,0.4)" : theme.palette.text.secondary, fontSize: "0.8rem" }}
                 >
                   Project Preview
                 </Typography>
@@ -108,10 +112,7 @@ export default function ProjectCard({
                 sx={{
                   fontWeight: 600,
                   letterSpacing: "0.2px",
-                  color: (theme) =>
-                    theme.palette.mode === "dark"
-                      ? "#E5E7EB"
-                      : "#111827",
+                  color: isDark ? "#E2E8F0" : theme.palette.text.primary,
                 }}
               >
                 {title}
@@ -120,8 +121,8 @@ export default function ProjectCard({
               <Typography
                 variant="body2"
                 sx={{
-                  color: "text.secondary",
-                  lineHeight: 1.5,
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.6,
                   fontSize: "0.9rem",
                   mt: 1,
                 }}
@@ -144,9 +145,17 @@ export default function ProjectCard({
                   label={t}
                   size="small"
                   sx={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: "999px",
+                    background: isDark ? "rgba(255,255,255,0.04)" : "#FFFFFF",
+                    border: `1px solid ${theme.palette.divider}`,
                     fontSize: "0.7rem",
+                    fontWeight: 500,
+                    color: isDark ? "rgba(226,232,240,0.8)" : theme.palette.text.primary,
+                    transition: "all 0.2s ease",
+                    "&:hover": {
+                      background: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+                      transform: "translateY(-1px)",
+                    },
                   }}
                 />
               ))}

@@ -108,8 +108,8 @@ export default function Header({
             : "1px solid rgba(0,0,0,0.08)",
         boxShadow:
           mode === "dark"
-            ? "0 10px 40px rgba(0,0,0,0.5)"
-            : "0 10px 30px rgba(0,0,0,0.08)",
+            ? "0 8px 30px rgba(0,0,0,0.35)"
+            : "0 6px 20px rgba(0,0,0,0.06)",
         zIndex: (theme) => theme.zIndex.drawer + 10,
       }}
     >
@@ -128,14 +128,9 @@ export default function Header({
           <Typography
             variant="h6"
             sx={{
-              fontWeight: 700,
-              letterSpacing: "0.3px",
-              background:
-                mode === "dark"
-                  ? "linear-gradient(90deg, #60A5FA, #A78BFA)"
-                  : "linear-gradient(90deg, #2563EB, #7C3AED)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: mode === "dark" ? "#E2E8F0" : "#0F172A",
+              fontWeight: 600,
+              letterSpacing: "-0.2px",
               cursor: "pointer",
             }}
           >
@@ -148,7 +143,7 @@ export default function Header({
           sx={{
             display: { xs: "none", md: "flex" },
             alignItems: "center",
-            gap: "16px",
+            gap: "12px",
           }}
         >
           {navItems.map((item) => (
@@ -158,31 +153,27 @@ export default function Header({
               onClick={() => handleScroll(item.id)}
               sx={{
                 textTransform: "none",
+                fontSize: "0.95rem",
+                px: 1.5,
+                py: 0.8,
+                borderRadius: "8px",
                 color:
                   active === item.id
                     ? mode === "dark"
-                      ? "#60A5FA"
-                      : "#2563EB"
+                      ? "#E2E8F0"
+                      : "#0F172A"
                     : mode === "dark"
-                    ? "rgba(255,255,255,0.85)"
-                    : "rgba(0,0,0,0.75)",
-                position: "relative",
+                    ? "rgba(226,232,240,0.7)"
+                    : "rgba(15,23,42,0.6)",
                 fontWeight: 500,
-                "&:after": {
-                  content: '""',
-                  position: "absolute",
-                  left: 0,
-                  bottom: -2,
-                  width: active === item.id ? "100%" : "0%",
-                  height: "2px",
-                  background: "#60A5FA",
-                  transition: "width 0.3s ease",
-                },
+                position: "relative",
+                transition: "all 0.2s ease",
                 "&:hover": {
-                  color: mode === "dark" ? "#60A5FA" : "#2563EB",
-                },
-                "&:hover:after": {
-                  width: "100%",
+                  backgroundColor:
+                    mode === "dark"
+                      ? "rgba(255,255,255,0.04)"
+                      : "rgba(0,0,0,0.04)",
+                  color: mode === "dark" ? "#E2E8F0" : "#0F172A",
                 },
               }}
             >
@@ -190,7 +181,7 @@ export default function Header({
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
+                  gap: "4px",
                 }}
               >
                 <item.icon size={16} />
@@ -202,13 +193,19 @@ export default function Header({
             onClick={toggleTheme}
             sx={{
               borderRadius: "999px",
-              border: "1px solid rgba(255,255,255,0.15)",
-              p: 1,
-              color: mode === "dark" ? "#fff" : "#111",
-              transition: "all 0.3s ease",
+              border:
+                mode === "dark"
+                  ? "1px solid rgba(255,255,255,0.08)"
+                  : "1px solid rgba(0,0,0,0.08)",
+              p: 0.8,
+              color: mode === "dark" ? "#E2E8F0" : "#0F172A",
+              transition: "all 0.2s ease",
               "&:hover": {
-                background: "rgba(59,130,246,0.1)",
-                transform: "rotate(10deg) scale(1.05)",
+                backgroundColor:
+                  mode === "dark"
+                    ? "rgba(255,255,255,0.05)"
+                    : "rgba(0,0,0,0.05)",
+                transform: "scale(1.05)",
               },
             }}
           >
@@ -222,12 +219,18 @@ export default function Header({
             display: { xs: "flex", md: "none" },
             color: mode === "dark" ? "#fff" : "#111",
             borderRadius: "999px",
-            border: "1px solid rgba(255,255,255,0.15)",
+            border:
+              mode === "dark"
+                ? "1px solid rgba(255,255,255,0.08)"
+                : "1px solid rgba(0,0,0,0.08)",
             backdropFilter: "blur(10px)",
             p: 1,
             transition: "all 0.25s ease",
             "&:hover": {
-              background: "rgba(59,130,246,0.1)",
+              backgroundColor:
+                mode === "dark"
+                  ? "rgba(255,255,255,0.05)"
+                  : "rgba(0,0,0,0.05)",
             },
           }}
         >
@@ -257,8 +260,8 @@ export default function Header({
               borderRadius: 0,
               background:
                 mode === "dark"
-                  ? "rgba(11,15,25,0.96)"
-                  : "rgba(255,255,255,0.98)",
+                  ? "rgba(11,15,25,0.92)"
+                  : "rgba(255,255,255,0.96)",
               backdropFilter: "blur(20px)",
             },
           },
@@ -268,7 +271,7 @@ export default function Header({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 5 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <Box
             sx={{
@@ -310,17 +313,20 @@ export default function Header({
                 sx={{
                   justifyContent: "center",
                   textTransform: "none",
-                  borderRadius: "12px",
+                  borderRadius: "10px",
                   px: 2,
-                  py: 1.2,
-                  color: mode === "dark" ? "#fff" : "#111",
-                  background: "transparent",
-                  fontSize: "1.2rem",
+                  py: 1.1,
+                  color: mode === "dark" ? "#E2E8F0" : "#0F172A",
+                  fontSize: "1.05rem",
                   fontWeight: 500,
-                  textAlign: "center",
                   width: "100%",
+                  transition: "all 0.2s ease",
                   "&:hover": {
-                    background: "rgba(59,130,246,0.12)",
+                    backgroundColor:
+                      mode === "dark"
+                        ? "rgba(255,255,255,0.05)"
+                        : "rgba(0,0,0,0.05)",
+                    transform: "translateY(-1px)",
                   },
                 }}
               >
@@ -336,9 +342,19 @@ export default function Header({
               sx={{
                 mt: "auto",
                 borderRadius: "999px",
-                border: "1px solid rgba(255,255,255,0.15)",
-                p: 1,
+                border:
+                  mode === "dark"
+                    ? "1px solid rgba(255,255,255,0.08)"
+                    : "1px solid rgba(0,0,0,0.08)",
+                p: 0.9,
                 alignSelf: "center",
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  backgroundColor:
+                    mode === "dark"
+                      ? "rgba(255,255,255,0.05)"
+                      : "rgba(0,0,0,0.05)",
+                },
               }}
             >
               {mode === "dark" ? <Sun size={20} /> : <Moon size={20} />}

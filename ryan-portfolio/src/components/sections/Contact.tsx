@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Stack, TextField, Button, CircularProgress } from "@mui/material";
+import { Box, Typography, Stack, TextField, Button, CircularProgress, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { useState } from "react";
@@ -9,11 +9,14 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
   return (
-    <Box component="section" id="contact" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 3 } }}>
+    <Box component="section" id="contact" sx={{ py: { xs: 10, md: 14 }, px: { xs: 2, md: 3 } }}>
       <Stack
-        spacing={6}
-        sx={{ maxWidth: "700px", mx: "auto", textAlign: "center" }}
+        spacing={5}
+        sx={{ maxWidth: "640px", mx: "auto", textAlign: "center" }}
       >
         <SectionTitle
           title="Contact"
@@ -23,16 +26,16 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <Box
             sx={{
-              borderRadius: "20px",
-              p: { xs: 2.5, md: 4 },
-              background: "linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))",
-              border: "1px solid rgba(255,255,255,0.08)",
-              backdropFilter: "blur(12px)",
+              borderRadius: "16px",
+              p: { xs: 2.5, md: 3.5 },
+              background: isDark ? "rgba(255,255,255,0.02)" : theme.palette.background.paper,
+              border: `1px solid ${theme.palette.divider}`,
+              backdropFilter: "blur(10px)",
             }}
           >
             <Box
@@ -73,17 +76,22 @@ export default function Contact() {
                 variant="outlined"
                 sx={{
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                    background: "rgba(255,255,255,0.02)",
+                    borderRadius: "10px",
+                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
+                    transition: "all 0.2s ease",
                     "& fieldset": {
-                      borderColor: "rgba(255,255,255,0.1)",
+                      borderColor: theme.palette.divider,
                     },
                     "&:hover fieldset": {
-                      borderColor: "rgba(255,255,255,0.2)",
+                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
                     },
                     "&.Mui-focused fieldset": {
                       borderColor: "#3B82F6",
                     },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
+                    fontSize: "0.9rem",
                   },
                 }}
               />
@@ -97,17 +105,22 @@ export default function Contact() {
                 variant="outlined"
                 sx={{
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                    background: "rgba(255,255,255,0.02)",
+                    borderRadius: "10px",
+                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
+                    transition: "all 0.2s ease",
                     "& fieldset": {
-                      borderColor: "rgba(255,255,255,0.1)",
+                      borderColor: theme.palette.divider,
                     },
                     "&:hover fieldset": {
-                      borderColor: "rgba(255,255,255,0.2)",
+                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
                     },
                     "&.Mui-focused fieldset": {
                       borderColor: "#3B82F6",
                     },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
+                    fontSize: "0.9rem",
                   },
                 }}
               />
@@ -122,17 +135,22 @@ export default function Contact() {
                 variant="outlined"
                 sx={{
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                    background: "rgba(255,255,255,0.02)",
+                    borderRadius: "10px",
+                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
+                    transition: "all 0.2s ease",
                     "& fieldset": {
-                      borderColor: "rgba(255,255,255,0.1)",
+                      borderColor: theme.palette.divider,
                     },
                     "&:hover fieldset": {
-                      borderColor: "rgba(255,255,255,0.2)",
+                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
                     },
                     "&.Mui-focused fieldset": {
                       borderColor: "#3B82F6",
                     },
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
+                    fontSize: "0.9rem",
                   },
                 }}
               />
@@ -144,15 +162,19 @@ export default function Contact() {
                 size="large"
                 sx={{
                   mt: 2,
-                  py: 1.3,
+                  py: 1.2,
                   borderRadius: "999px",
-                  background: "#3B82F6",
-                  boxShadow: "none",
-                  transition: "all 0.25s ease",
+                  backgroundColor: "#3B82F6",
+                  boxShadow: "0px 6px 20px rgba(59,130,246,0.25)",
+                  fontWeight: 500,
+                  textTransform: "none",
+                  transition: "all 0.2s ease",
                   ":hover": {
-                    background: "#2563EB",
+                    backgroundColor: "#2563EB",
                     transform: "translateY(-1px)",
+                    boxShadow: "0px 10px 30px rgba(59,130,246,0.35)",
                   },
+                  color: "#fff",
                 }}
                 type="submit"
                 disabled={loading}
@@ -164,23 +186,34 @@ export default function Contact() {
                 <Typography
                   sx={{
                     mt: 2,
-                    color: "success.main",
+                    color: isDark ? "#22C55E" : "#16A34A",
                     fontWeight: 500,
-                    fontSize: "0.95rem",
+                    fontSize: "0.9rem",
                   }}
                 >
                   Message sent successfully! I’ll get back to you soon.
                 </Typography>
               )}
 
-              <Typography variant="body2" sx={{ color: "text.secondary", mt: 2 }}>
+              <Box
+                sx={{
+                  width: "40px",
+                  height: "1px",
+                  mx: "auto",
+                  mt: 2,
+                  background: isDark ? "rgba(148,163,184,0.2)" : theme.palette.divider,
+                  borderRadius: "999px",
+                }}
+              />
+
+              <Typography variant="body2" sx={{ color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary, mt: 2, fontSize: "0.9rem", lineHeight: 1.6 }}>
                 Or email me at{" "}
-                <span style={{ color: "#60A5FA" }}>
+                <span style={{ color: theme.palette.primary.main }}>
                   ryan4sharifi@gmail.com
                 </span>
                 <br />
                 Or call/text at{" "}
-                <span style={{ color: "#60A5FA" }}>
+                <span style={{ color: theme.palette.primary.main }}>
                   (832) 710-1760
                 </span>
               </Typography>
