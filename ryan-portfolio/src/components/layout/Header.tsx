@@ -65,10 +65,6 @@ export default function Header({
     };
   }, [pathname]);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   const handleScroll = (id: string) => {
     // Always update URL with hash
     router.push(`/#${id}`);

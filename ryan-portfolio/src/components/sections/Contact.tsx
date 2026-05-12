@@ -209,7 +209,7 @@ export default function Contact() {
               <Typography variant="body2" sx={{ color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary, mt: 2, fontSize: "0.9rem", lineHeight: 1.6 }}>
                 Or email me at{" "}
                 <span style={{ color: theme.palette.primary.main }}>
-                  ryan4sharifi@gmail.com
+                  hello@ryansharifi.com
                 </span>
                 <br />
                 Or call/text at{" "}

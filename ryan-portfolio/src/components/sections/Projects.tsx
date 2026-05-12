@@ -1,147 +1,88 @@
 "use client";
 
 import { Box, Typography, Stack, useTheme } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { projects } from "@/data/projects";
 
-const featuredProjects = [
+const selectedProjects = [
   projects.trialfinder,
-  projects.persianhub,
-];
-
-const otherProjects = [
   projects.ismonetize,
   projects.sterling,
-  projects.telegramBots,
-  projects.volunteerApp,
-  projects.clinicApp,
-  projects.cyberBot,
 ];
 
 export default function Projects() {
   const theme = useTheme();
-  const isDark = theme.palette.mode === "dark";
+  const sectionSurface = alpha(theme.palette.background.paper, theme.palette.mode === "dark" ? 0.24 : 0.64);
 
   return (
     <Box
       component="section"
       id="projects"
       sx={{
-        py: { xs: 10, md: 14 },
+        py: { xs: 10, md: 16 },
         px: { xs: 2, md: 3 },
+        backgroundColor: "background.default",
       }}
     >
-      <Stack spacing={{ xs: 6, md: 8 }} sx={{ maxWidth: "1000px", mx: "auto" }}>
-        {/* Section Title */}
-        <Box sx={{ textAlign: "center" }}>
-          <Typography
-            sx={{
-              fontSize: "0.8rem",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: isDark
-                ? "rgba(148,163,184,0.7)"
-                : theme.palette.text.secondary,
-              fontWeight: 500,
-            }}
-          >
-            Work
-          </Typography>
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: 600,
-              letterSpacing: "-0.3px",
-              mt: 1,
-              fontSize: { xs: "1.8rem", md: "2.4rem" },
-              color: isDark ? "#E2E8F0" : theme.palette.text.primary,
-            }}
-          >
-            Projects
-          </Typography>
+      <Stack spacing={{ xs: 5, md: 7 }} sx={{ maxWidth: "1120px", mx: "auto" }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "0.9fr 1.1fr" },
+            gap: { xs: 2, md: 6 },
+            alignItems: "end",
+          }}
+        >
+          <Box>
+            <Typography
+              sx={{
+                fontSize: "0.75rem",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "primary.main",
+                fontWeight: 700,
+                mb: 1,
+              }}
+            >
+              Work
+            </Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 650,
+                letterSpacing: 0,
+                fontSize: { xs: "1.9rem", md: "2.45rem" },
+                color: "text.primary",
+              }}
+            >
+              Selected Work
+            </Typography>
+          </Box>
           <Typography
             variant="body1"
             sx={{
-              mt: 1,
-              color: isDark
-                ? "rgba(226,232,240,0.7)"
-                : theme.palette.text.secondary,
-              maxWidth: "480px",
-              mx: "auto",
-              fontSize: { xs: "0.95rem", md: "1.05rem" },
-              lineHeight: 1.7,
+              color: "text.secondary",
+              maxWidth: { md: "540px" },
+              fontSize: { xs: "0.98rem", md: "1.05rem" },
+              lineHeight: 1.75,
+              justifySelf: { md: "end" },
             }}
           >
-            A selection of my recent work, from full-stack platforms to smaller tools.
+            Product-focused builds across clinical discovery, creator analytics,
+            and client-facing SaaS-style web experiences.
           </Typography>
         </Box>
 
-        {/* Featured Projects */}
-        <Stack spacing={2}>
-          <Typography
-            sx={{
-              fontSize: "0.9rem",
-              color: isDark
-                ? "rgba(148,163,184,0.7)"
-                : theme.palette.text.secondary,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              fontWeight: 500,
-            }}
-          >
-            Featured
-          </Typography>
-          <Stack
-            direction={{ xs: "column", md: "row" }}
-            sx={{ flexWrap: "wrap", alignItems: "stretch", gap: { xs: "12px", md: "20px" } }}
-          >
-            {featuredProjects.map((project, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  flex: {
-                    xs: "1 1 100%",
-                    md: "1 1 calc(50% - 24px)",
-                  },
-                  minHeight: "240px",
-                }}
-              >
-                <Box sx={{ flex: 1 }}>
-                  <ProjectCard {...project} />
-                </Box>
-              </Box>
-            ))}
-          </Stack>
-        </Stack>
-
         <Box
           sx={{
-            width: "40px",
-            height: "1px",
-            mx: "auto",
-            background: isDark
-              ? "rgba(148,163,184,0.2)"
-              : theme.palette.divider,
-            borderRadius: "999px",
+            p: { xs: 1, md: 1.25 },
+            borderRadius: 4,
+            backgroundColor: sectionSurface,
+            border: 1,
+            borderColor: "divider",
           }}
-        />
-
-        {/* Other Projects */}
-        <Stack spacing={2}>
-          <Typography
-            sx={{
-              fontSize: "0.9rem",
-              color: isDark
-                ? "rgba(148,163,184,0.7)"
-                : theme.palette.text.secondary,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              fontWeight: 500,
-            }}
-          >
-            More Work
-          </Typography>
+        >
           <Box
             sx={{
               display: "grid",
@@ -150,18 +91,18 @@ export default function Projects() {
                 sm: "repeat(2, 1fr)",
                 md: "repeat(3, 1fr)",
               },
-              gap: { xs: "12px", md: "20px" },
+              gap: { xs: 1.5, md: 2 },
             }}
           >
-            {otherProjects.map((project, index) => (
-              <Box key={index} sx={{ minHeight: "200px", display: "flex" }}>
+            {selectedProjects.map((project) => (
+              <Box key={project.slug} sx={{ display: "flex" }}>
                 <Box sx={{ flex: 1 }}>
                   <ProjectCard {...project} />
                 </Box>
               </Box>
             ))}
           </Box>
-        </Stack>
+        </Box>
       </Stack>
     </Box>
   );
