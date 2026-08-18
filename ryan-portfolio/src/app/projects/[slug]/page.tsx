@@ -17,7 +17,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return { title: `${project.title} · Ryan Sharifi`, description: project.description };
+  const url = `/projects/${project.slug}`;
+  return {
+    title: `${project.title} Case Study`,
+    description: project.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${project.title} Case Study | Ryan Sharifi`,
+      description: project.description,
+      url,
+      type: "article",
+      images: project.image
+        ? [
+            {
+              url: project.image,
+              alt: `${project.title} project preview`,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: project.image ? "summary_large_image" : "summary",
+      title: `${project.title} Case Study | Ryan Sharifi`,
+      description: project.description,
+      images: project.image ? [project.image] : undefined,
+    },
+  };
 }
 
 function BodyText({ children }: { children: React.ReactNode }) {

@@ -8,7 +8,7 @@ export default function MoreProjects() {
   return (
     <Box component="section" id="more-projects" sx={{ py: { xs: 10, md: 15 }, px: { xs: 2, md: 3 } }}>
       <Stack spacing={{ xs: 6, md: 8 }} sx={{ maxWidth: 1200, mx: "auto" }}>
-        <SectionHeader eyebrow="03 · More projects" title="Across the stack" intro="A compact view of additional web, database, native iOS, automation, and content-platform work." />
+        <SectionHeader eyebrow="04 · More projects" title="Across the stack" intro="A compact view of additional web, database, native iOS, automation, WordPress, and content-platform work." />
 
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", lg: "repeat(3, minmax(0, 1fr))" }, borderTop: 1, borderLeft: 1, borderColor: "divider" }}>
           {secondaryProjects.map((project, index) => (

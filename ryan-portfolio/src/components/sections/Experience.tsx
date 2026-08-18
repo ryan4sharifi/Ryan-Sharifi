@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <Box component="section" id="experience" sx={{ py: { xs: 10, md: 15 }, px: { xs: 2, md: 3 }, backgroundColor: "background.paper" }}>
       <Stack spacing={{ xs: 6, md: 8 }} sx={{ maxWidth: 1200, mx: "auto" }}>
-        <SectionHeader eyebrow="02 · Experience" title="Professional work" intro="Product engineering experience across clinical research software, independent product development, and production systems." />
+        <SectionHeader eyebrow="03 · Experience" title="Professional work" intro="Product engineering experience across clinical research software, independent product development, freelance web work, and production systems." />
 
         <Box sx={{ borderTop: 1, borderColor: "divider" }}>
           {experiences.map((experience, index) => (

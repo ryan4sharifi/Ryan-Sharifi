@@ -10,7 +10,7 @@ export default function Skills() {
   return (
     <Box component="section" id="skills" sx={{ py: { xs: 10, md: 15 }, px: { xs: 2, md: 3 }, backgroundColor: "background.paper" }}>
       <Stack spacing={{ xs: 6, md: 8 }} sx={{ maxWidth: 1200, mx: "auto" }}>
-        <SectionHeader eyebrow="04 · Skills" title="Tools with purpose" intro="My primary stack centers on modern full-stack web development, supported by experience in .NET, relational databases, mobile platforms, automation, and deployment." />
+        <SectionHeader eyebrow="05 · Skills" title="Tools with purpose" intro="My primary stack centers on modern full-stack web development, supported by experience in .NET, relational databases, mobile platforms, WordPress, automation, and deployment." />
 
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.72fr 1.28fr" }, gap: { xs: 5, md: 10 } }}>
           <Box>

@@ -44,16 +44,17 @@ export const experiences: Experience[] = [
   },
   {
     company: "Independent Full-Stack Software Engineer",
-    role: "Product Engineering",
+    role: "Product Engineering & Freelance Web Development",
     period: "Aug 2024 – Present",
     summary:
-      "Own full-stack product development across web, backend, database, streaming, and Android/Android TV surfaces, with PersianHub1 as the primary product.",
+      "Own full-stack product development across web, backend, database, streaming, and Android/Android TV surfaces, while also taking on focused freelance web development work for websites, web applications, and technical improvements.",
     highlights: [
       "Next.js, React, TypeScript, FastAPI, PostgreSQL, and Supabase",
       "Authentication, subscriptions, and payment workflows",
       "Media streaming infrastructure and Linux-hosted integrations",
       "Smart TV and browser compatibility work",
       "Android and Android TV contributions with Kotlin and Jetpack Compose",
+      "Houston and remote freelance support for business websites and custom web applications",
     ],
     metrics: ["Web, API, database, and mobile scope", "Ongoing independent product ownership"],
   },

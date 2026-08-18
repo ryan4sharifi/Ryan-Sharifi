@@ -13,7 +13,7 @@ export default function About() {
   return (
     <Box component="section" id="about" sx={{ py: { xs: 10, md: 15 }, px: { xs: 2, md: 3 } }}>
       <Stack spacing={{ xs: 6, md: 8 }} sx={{ maxWidth: 1200, mx: "auto" }}>
-        <SectionHeader eyebrow="05 · About" title="End-to-end thinking" />
+        <SectionHeader eyebrow="06 · About" title="End-to-end thinking" />
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.75fr 1.25fr" }, gap: { xs: 4, md: 10 } }}>
           <Box sx={{ borderTop: 1, borderColor: "divider" }}>
             {facts.map(([label, value]) => (
@@ -24,7 +24,7 @@ export default function About() {
             ))}
           </Box>
           <Typography sx={{ color: "text.primary", fontSize: { xs: "1.3rem", md: "1.75rem" }, lineHeight: 1.55, letterSpacing: "-0.02em" }}>
-            I’m a University of Houston Computer Science graduate and full-stack engineer strongest in React and TypeScript on the frontend and Python, FastAPI, and PostgreSQL on the backend. I enjoy owning products end to end and have worked across web interfaces, APIs, relational databases, native mobile development, streaming systems, and automation.
+            I’m a University of Houston Computer Science graduate and full-stack engineer strongest in React and TypeScript on the frontend and Python, FastAPI, and PostgreSQL on the backend. I enjoy owning products end to end and have worked across web interfaces, APIs, relational databases, native mobile development, streaming systems, WordPress websites, and automation.
           </Typography>
         </Box>
       </Stack>

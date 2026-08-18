@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Work", id: "projects" },
+  { label: "Services", id: "services" },
   { label: "Experience", id: "experience" },
   { label: "Projects", id: "more-projects" },
   { label: "Skills", id: "skills" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { ArrowDownRight, BriefcaseBusiness, Code2, FileText } from "lucide-react";
+import { ArrowDownRight, BriefcaseBusiness, Code2, FileText, Handshake } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { socialLinks } from "@/data/portfolio";
@@ -30,28 +30,29 @@ export default function Hero() {
           <motion.div {...reveal(0)}>
             <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
               <Box sx={{ width: 28, height: "1px", backgroundColor: "primary.main" }} />
-              <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase" }}>Ryan Sharifi · Software Engineer</Typography>
+              <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase" }}>Ryan Sharifi · Houston, Texas</Typography>
             </Stack>
           </motion.div>
 
           <motion.div {...reveal(0.07)}>
             <Typography id="hero-title" component="h1" variant="h1" sx={{ color: "text.primary", fontSize: { xs: "3rem", sm: "4.1rem", lg: "5.35rem" }, maxWidth: 820 }}>
-              Full-stack products, built end to end.
+              Full-Stack Software Engineer
             </Typography>
           </motion.div>
 
           <motion.div {...reveal(0.14)}>
             <Typography sx={{ color: "text.secondary", fontSize: { xs: "1rem", sm: "1.16rem" }, lineHeight: 1.72, maxWidth: 690 }}>
-              I build product interfaces in React and TypeScript and backend systems with Python, FastAPI, and PostgreSQL—plus hands-on work across .NET, native mobile, automation, and production infrastructure.
+              I build product interfaces in React and TypeScript and backend systems with Python, FastAPI, and PostgreSQL. I am also available for freelance websites and web applications for Houston businesses, startups, founders, and individual clients.
             </Typography>
           </motion.div>
 
           <motion.div {...reveal(0.21)}>
             <Stack direction={{ xs: "column", sm: "row" }} useFlexGap sx={{ alignItems: { sm: "center" }, flexWrap: "wrap", gap: 1.25 }}>
-              <Button component={Link} href="/#projects" variant="contained" endIcon={<ArrowDownRight size={17} />}>View selected work</Button>
+              <Button component={Link} href="/#projects" variant="contained" endIcon={<ArrowDownRight size={17} />}>View Work</Button>
+              <Button component={Link} href="/#contact" variant="outlined" startIcon={<Handshake size={17} />} sx={{ color: "text.primary", borderColor: "primary.main" }}>Hire Me</Button>
+              <Button disabled title="Resume file or URL needs to be added" variant="text" startIcon={<FileText size={17} />}>Resume</Button>
               <Button component="a" href={socialLinks.github} target="_blank" rel="noreferrer" variant="outlined" startIcon={<Code2 size={17} />} sx={{ color: "text.primary", borderColor: "divider" }}>GitHub</Button>
               <Button component="a" href={socialLinks.linkedin} target="_blank" rel="noreferrer" variant="text" startIcon={<BriefcaseBusiness size={17} />} sx={{ color: "text.primary" }}>LinkedIn</Button>
-              <Button disabled title="Resume file or URL needs to be added" variant="text" startIcon={<FileText size={17} />}>Resume</Button>
             </Stack>
           </motion.div>
         </Stack>

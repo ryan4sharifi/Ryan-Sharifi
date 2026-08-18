@@ -16,9 +16,9 @@ export default function Contact() {
       <Box sx={{ maxWidth: 1200, mx: "auto", display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.9fr 1.1fr" }, gap: { xs: 6, md: 12 } }}>
         <Stack sx={{ justifyContent: "space-between" }} spacing={6}>
           <Box>
-            <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase", mb: 1.5 }}>06 · Contact</Typography>
+            <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase", mb: 1.5 }}>07 · Contact</Typography>
             <Typography component="h2" variant="h2" sx={{ color: "text.primary", fontSize: { xs: "2.4rem", md: "3.6rem" }, mb: 2.5 }}>Let’s build something useful.</Typography>
-            <Typography sx={{ color: "text.secondary", maxWidth: 500, fontSize: "1rem", lineHeight: 1.75 }}>Have a software engineering role, product, or technical problem to discuss? Send a message or reach out directly.</Typography>
+            <Typography sx={{ color: "text.secondary", maxWidth: 540, fontSize: "1rem", lineHeight: 1.75 }}>Reach out about software engineering roles, freelance web development projects, Houston business websites, full-stack applications, APIs, or technical improvements to an existing site.</Typography>
           </Box>
           <Box>
             <Button component="a" href={socialLinks.email} variant="text" endIcon={<ArrowUpRight size={18} />} sx={{ px: 0, color: "text.primary", fontSize: { xs: "1rem", sm: "1.15rem" }, "&:hover": { backgroundColor: "transparent", color: "primary.main" } }}>hello@ryansharifi.com</Button>
@@ -44,7 +44,7 @@ export default function Contact() {
           <TextField label="Name" name="name" autoComplete="name" required fullWidth sx={fieldSx} />
           <TextField label="Email" name="email" type="email" autoComplete="email" required fullWidth sx={fieldSx} />
           <TextField label="Message" name="message" multiline minRows={5} required fullWidth sx={fieldSx} />
-          <input type="hidden" name="_subject" value="New Portfolio Message" />
+          <input type="hidden" name="_subject" value="New Ryan Sharifi Portfolio / Freelance Inquiry" />
           <Button type="submit" disabled={loading} variant="contained" size="large" startIcon={!loading && <Mail size={17} />} sx={{ alignSelf: { sm: "flex-start" }, minWidth: 170 }}>
             {loading ? <CircularProgress size={22} color="inherit" /> : "Send message"}
           </Button>
