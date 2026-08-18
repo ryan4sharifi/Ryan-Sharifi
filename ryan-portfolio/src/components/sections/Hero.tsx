@@ -1,206 +1,79 @@
 "use client";
 
-import { Box, Typography, Button, Stack, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
-import FloatingTechIcons from "@/components/effects/FloatingTechIcons";
-import { useRouter, usePathname } from "next/navigation";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { ArrowDownRight, BriefcaseBusiness, Code2, FileText } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { socialLinks } from "@/data/portfolio";
+
+const systemLayers = [
+  ["Interface", "React · Next.js · TypeScript"],
+  ["Application", "Python · FastAPI · .NET"],
+  ["Data", "PostgreSQL · Supabase · SQL Server"],
+  ["Beyond web", "Swift · Kotlin · Automation"],
+];
 
 export default function Hero() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const theme = useTheme();
-  const isDark = theme.palette.mode === "dark";
-
-  const handleNavigate = (id: string) => {
-    router.push(`/#${id}`);
-
-    if (pathname === "/") {
-      const section = document.getElementById(id);
-      if (section) {
-        const yOffset = -80;
-        const y =
-          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }
-  };
+  const reduceMotion = useReducedMotion();
+  const reveal = (delay: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.48, delay: reduceMotion ? 0 : delay, ease: "easeOut" as const },
+  });
 
   return (
-    <Box
-      component="section"
-      sx={{
-        minHeight: "calc(100vh - 80px)",
-        pt: "120px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        px: 2,
-        background: isDark
-          ? "linear-gradient(180deg, #0B0F19 0%, #0F172A 100%)"
-          : "linear-gradient(180deg, #F7F9FC 0%, #EEF2F7 100%)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <FloatingTechIcons />
-      <Box
-        sx={{
-          position: "absolute",
-          top: "10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "600px",
-          height: "600px",
-          background: isDark
-            ? "radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%)"
-            : "radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%)",
-          filter: "blur(160px)",
-          zIndex: 0,
-        }}
-      />
-      <Stack
-        spacing={3}
-        sx={{
-          maxWidth: "900px",
-          mx: "auto",
-          position: "relative",
-          zIndex: 1,
-          px: { xs: 2, md: 0 },
-        }}
-      >
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              color: isDark ? "#E2E8F0" : theme.palette.text.primary,
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: "-0.3px",
-              fontSize: {
-                xs: "2rem",
-                sm: "2.6rem",
-                md: "3.2rem",
-              },
-            }}
-          >
-            I build high-performance
-            <br />
-            web applications
-          </Typography>
-        </motion.div>
+    <Box component="section" aria-labelledby="hero-title" sx={{ minHeight: { xs: 720, md: 760 }, display: "flex", alignItems: "center", px: { xs: 2, md: 3 }, pt: { xs: 14, md: 16 }, pb: { xs: 10, md: 12 }, position: "relative", overflow: "hidden", borderBottom: 1, borderColor: "divider" }}>
+      <Box aria-hidden sx={{ position: "absolute", inset: 0, opacity: 0.42, backgroundImage: (theme) => `linear-gradient(${theme.palette.divider} 1px, transparent 1px), linear-gradient(90deg, ${theme.palette.divider} 1px, transparent 1px)`, backgroundSize: "72px 72px", maskImage: "linear-gradient(to bottom, black, transparent 88%)" }} />
 
-        {/* Subtext */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <Typography
-            variant="body1"
-            sx={{
-              color: isDark
-                ? "rgba(226,232,240,0.7)"
-                : theme.palette.text.secondary,
-              fontSize: {
-                xs: "0.95rem",
-                sm: "1.1rem",
-              },
-              lineHeight: 1.7,
-              maxWidth: "520px",
-              mx: "auto",
-            }}
-          >
-            Full-stack developer specializing in modern, scalable, and elegant
-            web experiences using Next.js, FastAPI, and Supabase.
-          </Typography>
-        </motion.div>
+      <Box sx={{ maxWidth: 1200, width: "100%", mx: "auto", display: "grid", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1.2fr) minmax(330px, 0.8fr)" }, gap: { xs: 7, md: 10 }, alignItems: "center", position: "relative" }}>
+        <Stack spacing={3.5} sx={{ maxWidth: 760 }}>
+          <motion.div {...reveal(0)}>
+            <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+              <Box sx={{ width: 28, height: "1px", backgroundColor: "primary.main" }} />
+              <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase" }}>Ryan Sharifi · Software Engineer</Typography>
+            </Stack>
+          </motion.div>
 
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-            sx={{ justifyContent: "center", alignItems: "center" }}
-          >
-            <Button
-              variant="contained"
-              size="large"
-              onClick={() => handleNavigate("projects")}
-              sx={{
-                px: 4,
-                py: 1.3,
-                borderRadius: "999px",
-                backgroundColor: theme.palette.primary.main,
-                boxShadow: "0px 6px 20px rgba(59,130,246,0.25)",
-                fontWeight: 500,
-                textTransform: "none",
-                transition: "all 0.2s ease",
-                ":hover": {
-                  backgroundColor: theme.palette.primary.dark || "#2563EB",
-                  transform: "translateY(-1px)",
-                  boxShadow: "0px 10px 30px rgba(59,130,246,0.35)",
-                },
-              }}
-            >
-              View Projects
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={() => handleNavigate("contact")}
-              sx={{
-                px: 4,
-                py: 1.3,
-                borderRadius: "999px",
-                borderColor: theme.palette.divider,
-                color: isDark ? "#CBD5F5" : theme.palette.text.primary,
-                fontWeight: 500,
-                textTransform: "none",
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.02)"
-                  : theme.palette.background.paper,
-                backdropFilter: "blur(4px)",
-                transition: "all 0.2s ease",
-                ":hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.05)"
-                    : "rgba(0,0,0,0.04)",
-                  borderColor: isDark
-                    ? "rgba(148,163,184,0.5)"
-                    : "rgba(15,23,42,0.2)",
-                  transform: "translateY(-1px)",
-                },
-              }}
-            >
-              Contact Me
-            </Button>
-          </Stack>
+          <motion.div {...reveal(0.07)}>
+            <Typography id="hero-title" component="h1" variant="h1" sx={{ color: "text.primary", fontSize: { xs: "3rem", sm: "4.1rem", lg: "5.35rem" }, maxWidth: 820 }}>
+              Full-stack products, built end to end.
+            </Typography>
+          </motion.div>
+
+          <motion.div {...reveal(0.14)}>
+            <Typography sx={{ color: "text.secondary", fontSize: { xs: "1rem", sm: "1.16rem" }, lineHeight: 1.72, maxWidth: 690 }}>
+              I build product interfaces in React and TypeScript and backend systems with Python, FastAPI, and PostgreSQL—plus hands-on work across .NET, native mobile, automation, and production infrastructure.
+            </Typography>
+          </motion.div>
+
+          <motion.div {...reveal(0.21)}>
+            <Stack direction={{ xs: "column", sm: "row" }} useFlexGap sx={{ alignItems: { sm: "center" }, flexWrap: "wrap", gap: 1.25 }}>
+              <Button component={Link} href="/#projects" variant="contained" endIcon={<ArrowDownRight size={17} />}>View selected work</Button>
+              <Button component="a" href={socialLinks.github} target="_blank" rel="noreferrer" variant="outlined" startIcon={<Code2 size={17} />} sx={{ color: "text.primary", borderColor: "divider" }}>GitHub</Button>
+              <Button component="a" href={socialLinks.linkedin} target="_blank" rel="noreferrer" variant="text" startIcon={<BriefcaseBusiness size={17} />} sx={{ color: "text.primary" }}>LinkedIn</Button>
+              <Button disabled title="Resume file or URL needs to be added" variant="text" startIcon={<FileText size={17} />}>Resume</Button>
+            </Stack>
+          </motion.div>
+        </Stack>
+
+        <motion.div {...reveal(0.18)}>
+          <Box sx={{ border: 1, borderColor: "divider", backgroundColor: "background.paper", p: { xs: 2.5, sm: 3 } }}>
+            <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center", pb: 2.5, borderBottom: 1, borderColor: "divider" }}>
+              <Typography sx={{ color: "text.secondary", fontSize: "0.68rem", fontWeight: 750, letterSpacing: "0.13em", textTransform: "uppercase" }}>Engineering range</Typography>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.8 }}>
+                <Box sx={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "#64C98A" }} />
+                <Typography sx={{ color: "text.secondary", fontSize: "0.72rem" }}>End-to-end product work</Typography>
+              </Box>
+            </Stack>
+            {systemLayers.map(([label, value], index) => (
+              <Box key={label} sx={{ py: 2.2, borderBottom: index < systemLayers.length - 1 ? 1 : 0, borderColor: "divider" }}>
+                <Typography sx={{ color: "primary.main", fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", mb: 0.65 }}>{label}</Typography>
+                <Typography sx={{ color: "text.primary", fontSize: { xs: "0.9rem", sm: "0.96rem" }, fontWeight: 580 }}>{value}</Typography>
+              </Box>
+            ))}
+          </Box>
         </motion.div>
-      </Stack>
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "120px",
-          background: isDark
-            ? "linear-gradient(to bottom, transparent, rgba(11,15,25,0.9))"
-            : "linear-gradient(to bottom, transparent, #F7F9FC)",
-          zIndex: 0,
-        }}
-      />
+      </Box>
     </Box>
   );
 }

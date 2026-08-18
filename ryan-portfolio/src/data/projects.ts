@@ -18,145 +18,217 @@ export type Project = {
   highlights: string[];
   result: string;
   tech: string[];
-  image: string;
-  liveUrl: string;
-  demoUrl: string;
-  repoUrl: string;
+  image?: string;
+  liveUrl?: string;
 };
 
 export const projects = {
-  trialfinder: {
-    slug: "trialfinder",
-    title: "TrialFinder.com",
-    category: "Clinical Platform",
+  persianhub1: {
+    slug: "persianhub1",
+    title: "PersianHub1",
+    category: "Independent Product",
     outcome:
-      "A patient-centered clinical trial discovery product built around fast search, structured eligibility flows, and scalable study data.",
+      "A full-stack Persian media platform spanning web, backend APIs, subscriptions, streaming infrastructure, and Android/Android TV experiences.",
     description:
-      "Clinical trial discovery platform for patients, caregivers, and research teams.",
+      "Independent full-stack media platform across web, backend, streaming, and Android/Android TV.",
     overview: {
       product:
-        "TrialFinder is a clinical trial finder platform that helps people discover relevant studies through a focused web experience instead of dense registry-style search.",
+        "PersianHub1 is a media platform developed across web, backend, database, streaming, and Android/Android TV surfaces.",
       audience:
-        "Built for patients, caregivers, and clinical research teams that need a clearer path from condition-based search to trial evaluation.",
+        "Built for Persian-language audiences accessing media through browsers, Smart TVs, Android devices, and Android TV.",
     },
     problem:
-      "Clinical trial discovery is often fragmented, technical, and difficult to navigate. Users need to understand eligibility, location, and relevance quickly, while the product needs to handle structured medical data with reliability.",
+      "A media product operating across browsers, Smart TVs, mobile devices, and television interfaces requires coordinated authentication, subscription, payment, playback, API, and infrastructure behavior.",
     solution:
-      "Built a full-stack discovery experience with searchable trial data, filtering flows, matching-oriented UX, and product pages designed to make complex study information easier to scan and compare.",
+      "Developed the product as an integrated full-stack system using Next.js and React for web experiences, FastAPI for backend APIs, Supabase/PostgreSQL for application data, Kotlin and Jetpack Compose for Android surfaces, and Linux-hosted services for streaming integrations.",
     role: [
-      "Designed and implemented the core product experience across landing, search, filtering, and trial detail flows.",
-      "Built the full-stack foundation using Next.js for the interface and FastAPI-backed services for data access and application logic.",
-      "Modeled trial data in Supabase/PostgreSQL and shaped the UI around eligibility, condition, location, and study metadata.",
-      "Focused on responsive UX, clean information hierarchy, and a product feel suitable for a healthcare-adjacent platform.",
+      "Own full-stack development across web, backend APIs, database integration, streaming services, and production troubleshooting.",
+      "Implemented authentication, subscriptions, and payment workflows.",
+      "Worked on media streaming and Smart TV/browser compatibility.",
+      "Contributed to Android and Android TV experiences using Kotlin and Jetpack Compose.",
     ],
     architecture: {
       summary:
-        "Next.js powers the product UI, FastAPI handles backend application logic, and Supabase/PostgreSQL stores structured trial and user-facing product data. The system is organized around search, filtering, and detail-page retrieval so the interface can stay fast and clear as the dataset grows.",
-      stack: ["Next.js", "FastAPI", "Supabase", "PostgreSQL", "APIs"],
+        "Next.js, React, and TypeScript power the web experience; FastAPI provides backend APIs; Supabase/PostgreSQL stores application data; Kotlin and Jetpack Compose support Android and Android TV; and Linux-hosted services support streaming integrations.",
+      stack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "FastAPI",
+        "Supabase",
+        "PostgreSQL",
+        "Kotlin",
+        "Jetpack Compose",
+        "Linux",
+      ],
     },
     highlights: [
-      "Condition and keyword-based trial search",
-      "Filtering flows for narrowing relevant studies",
-      "Structured trial detail pages with readable clinical information",
-      "Matching-oriented product flows for patient discovery",
-      "Responsive SaaS-style UI with healthcare-grade clarity",
+      "Authentication and subscription workflows",
+      "Payment flows",
+      "Media streaming services",
+      "Smart TV and browser compatibility",
+      "Android and Android TV development",
+      "Backend APIs and PostgreSQL/Supabase integration",
+      "Linux production troubleshooting",
     ],
     result:
-      "The project strengthened the product foundation for a scalable clinical discovery experience and clarified how complex medical data can be translated into a simpler patient-facing workflow.",
-    tech: ["Next.js", "FastAPI", "Supabase", "PostgreSQL"],
+      "Ongoing independent engineering work spanning product development and production troubleshooting across web, mobile, backend, database, and Linux-hosted streaming services.",
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "Supabase",
+      "PostgreSQL",
+      "Kotlin",
+      "Jetpack Compose",
+      "Linux",
+    ],
+  },
+
+  trialfinder: {
+    slug: "trialfinder",
+    title: "Trial Finder",
+    category: "Professional Work · Sterling Systems Solutions",
+    outcome:
+      "A clinical trial discovery product serving search, filtering, dashboard, and study-detail workflows across more than 140,000 clinical trial records.",
+    description:
+      "Professional React and TypeScript work on clinical-trial search, filtering, dashboards, and study workflows at Sterling Systems Solutions.",
+    overview: {
+      product:
+        "Trial Finder helps patients and caregivers search and evaluate clinical trials through structured, accessible product workflows.",
+      audience:
+        "Built for patients, caregivers, and clinical research teams navigating a dataset of more than 140,000 clinical trial records.",
+    },
+    problem:
+      "Clinical trial information is dense and difficult to navigate. The product needs to expose a large structured dataset through clear search, filtering, dashboard, and study-detail workflows.",
+    solution:
+      "Contributed React and TypeScript interfaces, reusable components, search and filtering experiences, dashboards, and Supabase/PostgreSQL-backed workflows while improving responsive behavior and SEO.",
+    role: [
+      "Completed this work professionally as a Frontend / Full-Stack Engineer at Sterling Systems Solutions.",
+      "Developed more than 25 React and TypeScript components.",
+      "Contributed to more than 10 user workflows across search, filtering, dashboards, and trial information.",
+      "Integrated product interfaces with Supabase/PostgreSQL data and worked on responsive behavior and SEO improvements.",
+    ],
+    architecture: {
+      summary:
+        "React and TypeScript power the product interface, while Supabase/PostgreSQL supports structured clinical trial data used by search, filtering, dashboards, and detail workflows.",
+      stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "SEO"],
+    },
+    highlights: [
+      "25+ React and TypeScript components",
+      "10+ product workflows",
+      "140K+ clinical trial records",
+      "Search and filtering interfaces",
+      "Dashboard and trial-detail workflows",
+      "Responsive interface and SEO improvements",
+    ],
+    result:
+      "Professional product work that made a large clinical-trial dataset accessible through reusable interfaces and focused user workflows.",
+    tech: ["React", "TypeScript", "Supabase", "PostgreSQL", "SEO"],
     image: "/projects/trialfinder.png",
     liveUrl: "https://trial-finder.com",
-    demoUrl: "https://trial-finder.com",
-    repoUrl: "#",
   },
 
   ismonetize: {
     slug: "ismonetize",
     title: "IsMonetized.com",
-    category: "Creator Tool",
+    category: "Independent Creator Tool",
     outcome:
-      "A focused creator analytics product for checking YouTube monetization eligibility and estimating revenue potential.",
+      "A full-stack workflow for evaluating public YouTube channel signals and presenting clear monetization analysis.",
     description:
-      "YouTube monetization checker and revenue estimation tool for creators.",
+      "YouTube monetization analysis built with Next.js, TypeScript, FastAPI, Supabase, and the YouTube Data API.",
     overview: {
       product:
-        "IsMonetize is a creator-facing product that helps users evaluate YouTube monetization signals and understand revenue potential through a direct, decision-oriented interface.",
+        "IsMonetized is a creator-facing tool for analyzing public YouTube channel signals and presenting an understandable monetization estimate.",
       audience:
-        "Built for YouTube creators, channel operators, and small teams that want a faster way to understand eligibility and monetization readiness.",
+        "Built for creators, channel operators, researchers, and small teams evaluating channel activity and monetization signals.",
     },
     problem:
-      "Creators often have to piece together monetization requirements, public channel signals, and revenue assumptions manually. That makes it hard to understand whether a channel is ready, what might be missing, and what the upside could look like.",
+      "Creators often have to combine channel statistics, platform requirements, and public activity signals manually when evaluating monetization readiness.",
     solution:
-      "Built a streamlined web tool that turns channel inputs into clear monetization checks, eligibility context, and revenue estimation outputs without forcing users through a complex dashboard.",
+      "Built a full-stack analysis flow that accepts channel identifiers, retrieves YouTube Data API information, processes monetization-related signals, and presents the result in a focused product interface.",
     role: [
-      "Designed and built the product interface around fast input, clear status feedback, and readable monetization results.",
-      "Integrated YouTube API data into the product flow and shaped the UI around creator-friendly eligibility checks.",
-      "Created the revenue-estimation experience so users could move from channel lookup to actionable insight quickly.",
-      "Focused on SEO-ready page structure, performance, and a conversion-oriented landing experience.",
+      "Built the product with Next.js, React, and TypeScript.",
+      "Developed FastAPI-backed analysis workflows and Supabase integration.",
+      "Integrated the YouTube Data API for channel lookup and public channel signals.",
+      "Designed the user flow around fast input, clear status feedback, and readable results.",
     ],
     architecture: {
       summary:
-        "Next.js provides the product shell, landing pages, and result experience. YouTube API integrations support channel lookup and monetization-related signals, while the UI organizes the response into compact summaries, explanatory states, and revenue-estimation views.",
-      stack: ["Next.js", "YouTube API", "SEO", "Analytics UI"],
+        "Next.js, React, and TypeScript provide the product interface; FastAPI handles analysis workflows; Supabase supports application data; and the YouTube Data API provides public channel information.",
+      stack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "FastAPI",
+        "Supabase",
+        "YouTube Data API",
+      ],
     },
     highlights: [
-      "Creator-friendly channel lookup flow",
-      "Monetization eligibility checks",
-      "Revenue potential estimation",
-      "SEO-oriented content structure",
-      "Clear status states for complex platform rules",
+      "Flexible channel lookup",
+      "YouTube Data API integration",
+      "Monetization analysis workflows",
+      "Clear result and confidence states",
+      "Full-stack React, FastAPI, and Supabase integration",
     ],
     result:
-      "The product turned a research-heavy creator workflow into a simpler tool experience and sharpened the balance between utility, SEO, and product clarity.",
-    tech: ["Next.js", "YouTube API", "SEO"],
+      "A live full-stack product that turns public channel data into a focused, understandable monetization analysis workflow.",
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "Supabase",
+      "YouTube Data API",
+    ],
     image: "/projects/ismonetize.png",
     liveUrl: "https://ismonetized.com",
-    demoUrl: "https://ismonetized.com",
-    repoUrl: "#",
   },
 
   sterling: {
     slug: "sterling",
-    title: "SterlingSystemsSolutions.com",
-    category: "Client Website",
+    title: "Sterling Systems Solutions",
+    category: "Company Website",
     outcome:
-      "A polished business-services web presence built to communicate trust, innovation, and clear service positioning.",
+      "A responsive WordPress presence for Sterling Systems Solutions and its product portfolio.",
     description:
-      "Client-facing business website for a systems and solutions brand.",
+      "Company WordPress website supporting Sterling Systems Solutions' public web presence.",
     overview: {
       product:
-        "Sterling Systems Solutions is a professional web presence for a business-services firm, built to present its solutions, values, and service positioning with credibility.",
+        "The Sterling Systems Solutions website presents the company's products, principles, and public positioning.",
       audience:
-        "Built for prospective clients, partners, and stakeholders evaluating the company's capabilities and approach.",
+        "Built for prospective clients, partners, and stakeholders evaluating the company and its products.",
     },
     problem:
-      "The brand needed a site that felt credible and modern without becoming visually noisy. The experience had to make services easy to understand while communicating a polished, trustworthy technology posture.",
+      "The company needed a clear public website for communicating its products and principles across desktop and mobile devices.",
     solution:
-      "Built a responsive marketing website with focused service sections, clear navigation, brand-aligned messaging, and a refined visual system for presenting the firm's work and principles.",
+      "Supported the company WordPress site with responsive presentation and organized product and company content.",
     role: [
-      "Led the front-end implementation and UI/UX direction for the client-facing website.",
-      "Translated business positioning into a cleaner site structure with stronger hierarchy and more polished presentation.",
-      "Implemented responsive layouts, visual sections, and service-oriented content blocks.",
-      "Focused on professional polish, readability, and conversion-friendly paths to key service information.",
+      "Contributed to the Sterling Systems Solutions WordPress website.",
+      "Supported responsive company and product presentation.",
     ],
     architecture: {
       summary:
-        "The site uses a React-based front end with reusable visual sections, responsive layouts, and static content architecture optimized for fast loading and simple maintenance.",
-      stack: ["React", "Responsive UI", "SEO", "Client Website"],
+        "The current company website is implemented with WordPress and responsive web content.",
+      stack: ["WordPress", "HTML/CSS", "Responsive Design"],
     },
     highlights: [
-      "Professional brand and service presentation",
-      "Responsive section layouts",
-      "Clear service and principles hierarchy",
-      "Conversion-oriented navigation",
-      "Lightweight client-site architecture",
+      "Company and product presentation",
+      "Responsive web experience",
+      "WordPress content structure",
     ],
     result:
-      "The project created a more credible productized presence for the business and improved the clarity of its service story across desktop and mobile.",
-    tech: ["React", "UI/UX", "SEO"],
+      "The route is retained for backward compatibility, while Sterling is now represented primarily as professional experience on the homepage.",
+    tech: ["WordPress", "HTML/CSS", "Responsive Design"],
     image: "/projects/sterling.png",
     liveUrl: "https://sterling-systems-solutions.com",
-    demoUrl: "https://sterling-systems-solutions.com",
-    repoUrl: "#",
   },
 } satisfies Record<string, Project>;
+
+export const featuredProjects: Project[] = [
+  projects.persianhub1,
+  projects.trialfinder,
+  projects.ismonetize,
+];

@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { createAppTheme } from "@/theme/theme";
 import { useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
@@ -12,6 +12,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
 export default function RootLayout({
@@ -24,14 +25,21 @@ export default function RootLayout({
   const theme = useMemo(() => createAppTheme(mode), [mode]);
 
   const toggleTheme = () => {
-    setMode((prev) => (prev === "dark" ? "light" : "dark"));
+    setMode((prev) => {
+      const nextMode = prev === "dark" ? "light" : "dark";
+      document.documentElement.style.colorScheme = nextMode;
+      return nextMode;
+    });
   };
 
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${inter.className}`} suppressHydrationWarning>
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Box component="a" href="#main-content" sx={{ position: "fixed", top: 8, left: 8, zIndex: 2000, px: 2, py: 1, backgroundColor: "background.paper", color: "text.primary", border: 1, borderColor: "primary.main", transform: "translateY(-160%)", "&:focus": { transform: "translateY(0)" } }}>
+            Skip to content
+          </Box>
           <Header toggleTheme={toggleTheme} mode={mode} />
           {children}
           <Analytics />

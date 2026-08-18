@@ -1,226 +1,59 @@
 "use client";
 
-import { Box, Typography, Stack, TextField, Button, CircularProgress, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
-import SectionTitle from "@/components/ui/SectionTitle";
+import { Box, Button, CircularProgress, Stack, TextField, Typography } from "@mui/material";
+import { ArrowUpRight, BriefcaseBusiness, Code2, Mail } from "lucide-react";
 import { useState } from "react";
+import { socialLinks } from "@/data/portfolio";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const theme = useTheme();
-  const isDark = theme.palette.mode === "dark";
+  const [error, setError] = useState(false);
+  const fieldSx = { "& .MuiOutlinedInput-root": { borderRadius: 1, backgroundColor: "background.default", "& fieldset": { borderColor: "divider" }, "&:hover fieldset": { borderColor: "text.secondary" }, "&.Mui-focused fieldset": { borderColor: "primary.main", borderWidth: 2 } } };
 
   return (
-    <Box component="section" id="contact" sx={{ py: { xs: 10, md: 14 }, px: { xs: 2, md: 3 } }}>
-      <Stack
-        spacing={5}
-        sx={{ maxWidth: "640px", mx: "auto", textAlign: "center" }}
-      >
-        <SectionTitle
-          title="Contact"
-          subtitle="Have a project or opportunity? Let’s connect."
-        />
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <Box
-            sx={{
-              borderRadius: "16px",
-              p: { xs: 2.5, md: 3.5 },
-              background: isDark ? "rgba(255,255,255,0.02)" : theme.palette.background.paper,
-              border: `1px solid ${theme.palette.divider}`,
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <Box
-              component="form"
-              onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-                e.preventDefault();
-                setLoading(true);
-
-                const form = e.currentTarget;
-                const formData = new FormData(form);
-
-                try {
-                  const res = await fetch("https://formspree.io/f/mdabbglv", {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                      Accept: "application/json",
-                    },
-                  });
-
-                  if (res.ok) {
-                    setSuccess(true);
-                    form.reset();
-                  }
-                } catch (err) {
-                  console.error(err);
-                } finally {
-                  setLoading(false);
-                }
-              }}
-              sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
-            >
-              <TextField
-                label="Name"
-                name="name"
-                required
-                fullWidth
-                variant="outlined"
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px",
-                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
-                    transition: "all 0.2s ease",
-                    "& fieldset": {
-                      borderColor: theme.palette.divider,
-                    },
-                    "&:hover fieldset": {
-                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#3B82F6",
-                    },
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
-                    fontSize: "0.9rem",
-                  },
-                }}
-              />
-
-              <TextField
-                label="Email"
-                name="email"
-                type="email"
-                required
-                fullWidth
-                variant="outlined"
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px",
-                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
-                    transition: "all 0.2s ease",
-                    "& fieldset": {
-                      borderColor: theme.palette.divider,
-                    },
-                    "&:hover fieldset": {
-                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#3B82F6",
-                    },
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
-                    fontSize: "0.9rem",
-                  },
-                }}
-              />
-
-              <TextField
-                label="Message"
-                name="message"
-                multiline
-                rows={4}
-                required
-                fullWidth
-                variant="outlined"
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px",
-                    background: isDark ? "rgba(255,255,255,0.015)" : "#FFFFFF",
-                    transition: "all 0.2s ease",
-                    "& fieldset": {
-                      borderColor: theme.palette.divider,
-                    },
-                    "&:hover fieldset": {
-                      borderColor: isDark ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.2)",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#3B82F6",
-                    },
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary,
-                    fontSize: "0.9rem",
-                  },
-                }}
-              />
-
-              <input type="hidden" name="_subject" value="New Portfolio Message" />
-
-              <Button
-                variant="contained"
-                size="large"
-                sx={{
-                  mt: 2,
-                  py: 1.2,
-                  borderRadius: "999px",
-                  backgroundColor: "#3B82F6",
-                  boxShadow: "0px 6px 20px rgba(59,130,246,0.25)",
-                  fontWeight: 500,
-                  textTransform: "none",
-                  transition: "all 0.2s ease",
-                  ":hover": {
-                    backgroundColor: "#2563EB",
-                    transform: "translateY(-1px)",
-                    boxShadow: "0px 10px 30px rgba(59,130,246,0.35)",
-                  },
-                  color: "#fff",
-                }}
-                type="submit"
-                disabled={loading}
-              >
-                {loading ? <CircularProgress size={24} sx={{ color: "#fff" }} /> : "Send Message"}
-              </Button>
-
-              {success && (
-                <Typography
-                  sx={{
-                    mt: 2,
-                    color: isDark ? "#22C55E" : "#16A34A",
-                    fontWeight: 500,
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  Message sent successfully! I’ll get back to you soon.
-                </Typography>
-              )}
-
-              <Box
-                sx={{
-                  width: "40px",
-                  height: "1px",
-                  mx: "auto",
-                  mt: 2,
-                  background: isDark ? "rgba(148,163,184,0.2)" : theme.palette.divider,
-                  borderRadius: "999px",
-                }}
-              />
-
-              <Typography variant="body2" sx={{ color: isDark ? "rgba(226,232,240,0.6)" : theme.palette.text.secondary, mt: 2, fontSize: "0.9rem", lineHeight: 1.6 }}>
-                Or email me at{" "}
-                <span style={{ color: theme.palette.primary.main }}>
-                  hello@ryansharifi.com
-                </span>
-                <br />
-                Or call/text at{" "}
-                <span style={{ color: theme.palette.primary.main }}>
-                  (832) 710-1760
-                </span>
-              </Typography>
-            </Box>
+    <Box component="section" id="contact" sx={{ py: { xs: 10, md: 15 }, px: { xs: 2, md: 3 }, borderTop: 1, borderColor: "divider", backgroundColor: "background.paper" }}>
+      <Box sx={{ maxWidth: 1200, mx: "auto", display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.9fr 1.1fr" }, gap: { xs: 6, md: 12 } }}>
+        <Stack sx={{ justifyContent: "space-between" }} spacing={6}>
+          <Box>
+            <Typography sx={{ color: "primary.main", fontSize: "0.72rem", fontWeight: 750, letterSpacing: "0.14em", textTransform: "uppercase", mb: 1.5 }}>06 · Contact</Typography>
+            <Typography component="h2" variant="h2" sx={{ color: "text.primary", fontSize: { xs: "2.4rem", md: "3.6rem" }, mb: 2.5 }}>Let’s build something useful.</Typography>
+            <Typography sx={{ color: "text.secondary", maxWidth: 500, fontSize: "1rem", lineHeight: 1.75 }}>Have a software engineering role, product, or technical problem to discuss? Send a message or reach out directly.</Typography>
           </Box>
-        </motion.div>
-      </Stack>
+          <Box>
+            <Button component="a" href={socialLinks.email} variant="text" endIcon={<ArrowUpRight size={18} />} sx={{ px: 0, color: "text.primary", fontSize: { xs: "1rem", sm: "1.15rem" }, "&:hover": { backgroundColor: "transparent", color: "primary.main" } }}>hello@ryansharifi.com</Button>
+            <Stack direction="row" useFlexGap sx={{ mt: 2, flexWrap: "wrap", gap: 1 }}>
+              <Button component="a" href={socialLinks.github} target="_blank" rel="noreferrer" variant="outlined" startIcon={<Code2 size={16} />} sx={{ color: "text.primary", borderColor: "divider" }}>GitHub</Button>
+              <Button component="a" href={socialLinks.linkedin} target="_blank" rel="noreferrer" variant="outlined" startIcon={<BriefcaseBusiness size={16} />} sx={{ color: "text.primary", borderColor: "divider" }}>LinkedIn</Button>
+            </Stack>
+          </Box>
+        </Stack>
+
+        <Box
+          component="form"
+          onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault(); setLoading(true); setSuccess(false); setError(false);
+            const form = event.currentTarget;
+            try {
+              const response = await fetch("https://formspree.io/f/mdabbglv", { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+              if (response.ok) { setSuccess(true); form.reset(); } else { setError(true); }
+            } catch { setError(true); } finally { setLoading(false); }
+          }}
+          sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+        >
+          <TextField label="Name" name="name" autoComplete="name" required fullWidth sx={fieldSx} />
+          <TextField label="Email" name="email" type="email" autoComplete="email" required fullWidth sx={fieldSx} />
+          <TextField label="Message" name="message" multiline minRows={5} required fullWidth sx={fieldSx} />
+          <input type="hidden" name="_subject" value="New Portfolio Message" />
+          <Button type="submit" disabled={loading} variant="contained" size="large" startIcon={!loading && <Mail size={17} />} sx={{ alignSelf: { sm: "flex-start" }, minWidth: 170 }}>
+            {loading ? <CircularProgress size={22} color="inherit" /> : "Send message"}
+          </Button>
+          <Box aria-live="polite" sx={{ minHeight: 28 }}>
+            {success && <Typography sx={{ color: "success.main", fontSize: "0.86rem", fontWeight: 650 }}>Message sent successfully. I’ll get back to you soon.</Typography>}
+            {error && <Typography sx={{ color: "error.main", fontSize: "0.86rem", fontWeight: 650 }}>The message could not be sent. Please email hello@ryansharifi.com instead.</Typography>}
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 }
